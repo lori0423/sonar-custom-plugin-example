@@ -29,24 +29,24 @@ import static org.sonar.api.web.page.Page.Scope.COMPONENT;
 
 public class MyPluginPageDefinition implements PageDefinition {
 
-  @Override
-  public void define(Context context) {
-    context
-      .addPage(Page.builder("example/global_page")
-        .setName("Global Page using Vanilla JS")
-        .build())
-      .addPage(Page.builder("example/project_page")
-        .setName("Project Page using Backbone JS")
-        .setScope(COMPONENT)
-        .build())
-      .addPage(Page.builder("example/portfolio_page")
-        .setName("Portfolio Page using React JS")
-        .setScope(COMPONENT)
-        .setComponentQualifiers(VIEW, SUB_VIEW)
-        .build())
-      .addPage(Page.builder("example/admin_page")
-        .setName("Admin Page using React JS")
-        .setAdmin(true)
-        .build());
-  }
+    @Override
+    public void define(Context context) {
+        context
+                .addPage(Page.builder("example/global_page")
+                        .setName("Global Page using Vanilla JS")
+                        .build())
+                .addPage(Page.builder("example/project_page")
+                        .setName("Project Page using Backbone JS")
+                        .setScope(COMPONENT)
+                        .build())
+                .addPage(Page.builder("example/portfolio_page")
+                        .setName("Portfolio Page using React JS")
+                        .setScope(COMPONENT)
+                        .setComponentQualifiers(VIEW, SUB_VIEW)
+                        .build())
+                .addPage(Page.builder("example/admin_page")
+                        .setName("Admin Page using React JS")
+                        .setAdmin(true)
+                        .build());
+    }
 }

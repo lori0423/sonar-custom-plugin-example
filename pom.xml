@@ -16,9 +16,6 @@
     <sonar.testingHarnessVersion>9.5.0.56709</sonar.testingHarnessVersion>
     <jdk.min.version>11</jdk.min.version>
     <sonar.sources>src/main/java,src/main/js</sonar.sources>
-    <!-- 指定maven.compiler.plugin 配置版本，解决编译问题 -->
-<!--    <maven.compiler.source>1.8</maven.compiler.source>-->
-<!--    <maven.compiler.target>1.8</maven.compiler.target>-->
   </properties>
 
   <dependencies>
@@ -34,11 +31,7 @@
       <artifactId>commons-lang</artifactId>
       <version>2.6</version>
     </dependency>
-    <dependency>
-      <groupId>org.sonarsource.analyzer-commons</groupId>
-      <artifactId>sonar-analyzer-commons</artifactId>
-      <version>1.24.0.965</version>
-    </dependency>
+
 
     <!-- unit tests -->
     <dependency>
@@ -47,42 +40,10 @@
       <version>${sonar.testingHarnessVersion}</version>
       <scope>test</scope>
     </dependency>
-    <!-- version to be specified manually -->
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>5.7.0</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- version to be specified manually -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-migrationsupport</artifactId>
-      <version>5.7.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.sonarsource.java</groupId>
-      <artifactId>sonar-java-plugin</artifactId>
-      <version>6.15.1.26025</version>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.sonarsource.java</groupId>
-      <artifactId>java-checks-testkit</artifactId>
-      <version>6.15.1.26025</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.23.1</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -105,7 +66,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.10.1</version>
         <configuration>
-          <release>17</release>
+          <release>11</release>
         </configuration>
       </plugin>
       <plugin>
@@ -151,67 +112,6 @@
             </goals>
             <configuration>
               <arguments>run build</arguments>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.5.0</version>
-        <executions>
-          <execution>
-            <id>copy</id>
-            <phase>test-compile</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.slf4j</groupId>
-                  <artifactId>slf4j-api</artifactId>
-                  <version>1.7.30</version>
-                  <type>jar</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.commons</groupId>
-                  <artifactId>commons-collections4</artifactId>
-                  <version>4.0</version>
-                  <type>jar</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>javax</groupId>
-                  <artifactId>javaee-api</artifactId>
-                  <version>6.0</version>
-                  <type>jar</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.springframework</groupId>
-                  <artifactId>spring-webmvc</artifactId>
-                  <version>4.3.3.RELEASE</version>
-                  <type>jar</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.springframework</groupId>
-                  <artifactId>spring-web</artifactId>
-                  <version>4.3.3.RELEASE</version>
-                  <type>jar</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.springframework</groupId>
-                  <artifactId>spring-context</artifactId>
-                  <version>4.3.3.RELEASE</version>
-                  <type>jar</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>junit</groupId>
-                  <artifactId>junit</artifactId>
-                  <version>4.13.2</version>
-                  <type>jar</type>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.directory}/test-jars</outputDirectory>
             </configuration>
           </execution>
         </executions>

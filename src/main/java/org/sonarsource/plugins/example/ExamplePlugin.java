@@ -28,7 +28,11 @@ import org.sonarsource.plugins.example.measures.ComputeSizeAverage;
 import org.sonarsource.plugins.example.measures.ComputeSizeRating;
 import org.sonarsource.plugins.example.measures.ExampleMetrics;
 import org.sonarsource.plugins.example.measures.SetSizeOnFilesSensor;
-import org.sonarsource.plugins.example.rules.*;
+import org.sonarsource.plugins.example.rules.CreateIssuesOnJavaFilesSensor;
+import org.sonarsource.plugins.example.rules.FlagLineSensor;
+import org.sonarsource.plugins.example.rules.FooLintIssuesLoaderSensor;
+import org.sonarsource.plugins.example.rules.FlagRuleDefinition;
+import org.sonarsource.plugins.example.rules.JavaRulesDefinition;
 import org.sonarsource.plugins.example.settings.FooLanguageProperties;
 import org.sonarsource.plugins.example.settings.HelloWorldProperties;
 import org.sonarsource.plugins.example.settings.SayHelloFromScanner;
@@ -39,33 +43,30 @@ import org.sonarsource.plugins.example.web.MyPluginPageDefinition;
  */
 public class ExamplePlugin implements Plugin {
 
-    @Override
-    public void define(Context context) {
-        // tutorial on hooks
-        context.addExtensions(PostJobInScanner.class, DisplayQualityGateStatus.class);
+  @Override
+  public void define(Context context) {
+    // tutorial on hooks
+    context.addExtensions(PostJobInScanner.class, DisplayQualityGateStatus.class);
 
-        // tutorial on languages
-        // https://docs.sonarqube.org/9.4/extend/new-languages/
-        context.addExtensions(FooLanguage.class, FooQualityProfile.class);
-        context.addExtensions(FooLanguageProperties.getProperties());
+    // tutorial on languages
+    // https://docs.sonarqube.org/9.4/extend/new-languages/
+    context.addExtensions(FooLanguage.class, FooQualityProfile.class);
+    context.addExtensions(FooLanguageProperties.getProperties());
 
-        // tutorial on measures
-        context
-                .addExtensions(ExampleMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class);
+    // tutorial on measures
+    context
+      .addExtensions(ExampleMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class);
 
-        // tutorial on rules
-        context.addExtensions(JavaRulesDefinition.class, CreateIssuesOnJavaFilesSensor.class);
-        context.addExtensions(FlagRuleDefinition.class, FlagLineSensor.class, FooLintIssuesLoaderSensor.class);
+    // tutorial on rules
+    context.addExtensions(JavaRulesDefinition.class, CreateIssuesOnJavaFilesSensor.class);
+    context.addExtensions(FlagRuleDefinition.class, FlagLineSensor.class, FooLintIssuesLoaderSensor.class);
 
-        //Boilerplate code rules
-        context.addExtensions(MyJavaRulesDefinition.class, JavaFileCheckRegistrar.class);
+    // tutorial on settings
+    context
+      .addExtensions(HelloWorldProperties.getProperties())
+      .addExtension(SayHelloFromScanner.class);
 
-        // tutorial on settings
-        context
-                .addExtensions(HelloWorldProperties.getProperties())
-                .addExtension(SayHelloFromScanner.class);
-
-        // tutorial on web extensions
-        context.addExtension(MyPluginPageDefinition.class);
-    }
+    // tutorial on web extensions
+    context.addExtension(MyPluginPageDefinition.class);
+  }
 }
